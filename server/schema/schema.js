@@ -142,6 +142,37 @@ const RootMutation = new GraphQLObjectType({
         return Project.findByIdAndRemove(args.id);
       },
     },
+    updateProject: {
+      type: ProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        desc: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            name: "ProjectStatusUpdate",
+            values: {
+              new: { value: "Not Started" },
+              progress: { value: "In Progress" },
+              completed: { value: "Completed" },
+            },
+          }),
+        },
+      },
+      resolve(parent, args) {
+        return Project.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              desc: args.desc,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
   },
 });
 
