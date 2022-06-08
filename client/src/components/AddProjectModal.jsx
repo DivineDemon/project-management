@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROJECT } from "./../mutations/projectMutations";
 import { GET_PROJECTS } from "./../queries/projectQueries";
 import { GET_CLIENTS } from "./../queries/clientQueries";
-import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
 
 export default function AddProjectModal() {
   const [name, setName] = useState("");
@@ -44,7 +44,7 @@ export default function AddProjectModal() {
     setClientId("");
   };
 
-  if (loading) return <Spinner />;
+  //   if (loading) return <Spinner />;
   if (error) return <p>Something went wrong!</p>;
 
   return (
