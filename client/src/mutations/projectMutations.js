@@ -29,3 +29,25 @@ export const DELETE_PROJECT = gql`
     }
   }
 `;
+
+export const UPDATE_PROJECT = gql`
+  mutation UpdateProject(
+    $id: ID!
+    $name: String!
+    $desc: String!
+    $status: ProjectStatusUpdate!
+  ) {
+    updateProject(id: $id, name: $name, desc: $desc, status: $status) {
+      id
+      name
+      desc
+      status
+      client {
+        id
+        name
+        email
+        phone
+      }
+    }
+  }
+`;
